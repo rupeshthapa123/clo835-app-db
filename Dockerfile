@@ -1,13 +1,17 @@
 FROM ubuntu:20.04
-RUN apt-get update -y
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y python3 python3-pip mysql-client && \
+    apt-get clean
+
 COPY . /app
 WORKDIR /app
-RUN set -xe \
-    && apt-get update -y \
-    && apt-get install -y python3-pip \
-    && apt-get install -y mysql-client 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt
+
 EXPOSE 8080
-ENTRYPOINT [ "python3" ]
-CMD [ "app.py" ]
+
+ENTRYPOINT ["python3"]
+CMD ["app.py"]
