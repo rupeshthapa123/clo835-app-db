@@ -128,7 +128,7 @@ if __name__ == '__main__':
     else:
         print("No command line argument or environment variable. Picking a Random Color =" + COLOR)
 
-    # Check if input color is a supported one
+    # Check if input color is a supported one or more
     if COLOR not in color_codes:
         print("Color not supported. Received '" + COLOR + "' expected one of " + SUPPORTED_COLORS)
         exit(1)
