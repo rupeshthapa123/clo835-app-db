@@ -6,7 +6,7 @@ import argparse
 
 
 app = Flask(__name__)
-print("All ENV vars:", os.environ)
+
 DBHOST = os.environ.get("DBHOST") or "localhost"
 DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "passwors"
@@ -135,3 +135,4 @@ if __name__ == '__main__':
         exit(1)
 
     app.run(host='0.0.0.0',port=8080,debug=True)
+    print("All ENV vars:", os.environ)
