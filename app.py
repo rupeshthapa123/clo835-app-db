@@ -12,9 +12,8 @@ DBUSER = os.environ.get("DBUSER") or "root"
 DBPWD = os.environ.get("DBPWD") or "passwors"
 DATABASE = os.environ.get("DATABASE") or "employees"
 COLOR_FROM_ENV = os.environ.get('APP_COLOR') or "lime"
-dbport_raw = os.environ.get("DBPORT")
-print("DBPORT is:", dbport_raw)
-DBPORT = int(dbport_raw)
+DBPORT = int(os.environ.get("DBPORT"))
+
 # Create a connection to the MySQL database
 db_conn = connections.Connection(
     host= DBHOST,
@@ -129,10 +128,9 @@ if __name__ == '__main__':
     else:
         print("No command line argument or environment variable. Picking a Random Color =" + COLOR)
 
-    # Check if input color is a supported one
+    # Check if input color is a supported one or more
     if COLOR not in color_codes:
         print("Color not supported. Received '" + COLOR + "' expected one of " + SUPPORTED_COLORS)
         exit(1)
 
     app.run(host='0.0.0.0',port=8080,debug=True)
-    print("All ENV vars:", os.environ)
