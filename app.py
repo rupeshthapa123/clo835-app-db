@@ -136,3 +136,4 @@ if __name__ == '__main__':
         exit(1)
 
     app.run(host='0.0.0.0',port=8080,debug=True)
+    print("All ENV vars:", os.environ)
