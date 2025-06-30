@@ -27,12 +27,11 @@ jobs:
 
     - name: Build, tag, and push App image
       run: |
-        VERSION=v2
         docker build -t app ./app
-        docker tag app:latest ${{ secrets.APP_ECR_URI }}:latest
-        docker tag app:latest ${{ secrets.APP_ECR_URI }}:$VERSION
-        docker push ${{ secrets.APP_ECR_URI }}:latest
-        docker push ${{ secrets.APP_ECR_URI }}:$VERSION
+        # docker tag app:latest ${{ secrets.APP_ECR_URI }}:latest
+        docker tag app:latest ${{ secrets.APP_ECR_URI }}:v2
+        # docker push ${{ secrets.APP_ECR_URI }}:latest
+        docker push ${{ secrets.APP_ECR_URI }}:v2
 
     - name: Build, tag, and push MySQL image
       run: |
