@@ -26,14 +26,13 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v2
 
     - name: Build, tag, and push App image
-      env:
-        IMAGE_VERSION: v2
       run: |
+        VERSION=v2
         docker build -t app ./app
         docker tag app:latest ${{ secrets.APP_ECR_URI }}:latest
-        docker tag app:latest ${{ secrets.APP_ECR_URI }}:${{ env.IMAGE_VERSION }}
+        docker tag app:latest ${{ secrets.APP_ECR_URI }}:$VERSION
         docker push ${{ secrets.APP_ECR_URI }}:latest
-        docker push ${{ secrets.APP_ECR_URI }}:${{ env.IMAGE_VERSION }}
+        docker push ${{ secrets.APP_ECR_URI }}:$VERSION
 
     - name: Build, tag, and push MySQL image
       run: |
